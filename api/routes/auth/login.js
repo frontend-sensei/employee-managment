@@ -3,7 +3,7 @@ const router = Router()
 const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator')
 const {loginValidators} = require('./validators')
-const keys = require('../../../keys')
+const keys = require('../../keys')
 
 router.post('/admin-login', loginValidators, async (req, res) => {
   
