@@ -1,0 +1,52 @@
+.admin-nav {
+  &__button {
+    position: fixed;
+    z-index: 2000;
+    left: 10px;
+    top: 10px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: $green-200;
+    border-radius: 50%;
+    transition: .1s ease-in-out;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px $green-300;
+    }
+    &-icon {
+      width: 18px;
+      height: auto;
+    }
+  }
+  &__list {
+    position: fixed;
+    z-index: 1000;
+    padding: 80px 0 0 0;
+    width: 200px;
+    height: 100vh;
+    right: 100%; 
+    top: 0;
+    background-color: $green-200;
+    box-shadow: 0 0 20px rgba(67, 67, 67, 0.32);
+    transition: .2s ease-in-out;
+
+    &--opened {
+      right: calc(100% - 200px)
+    }
+
+    &-link {
+      color: inherit;
+      display: block;
+      padding: 10px 20px;
+      transition: .2s ease-in-out;
+      &:hover, &:focus, &.router-link-active {
+        background-color: $green-300;
+        outline: none;
+      }
+    }
+  }
+}

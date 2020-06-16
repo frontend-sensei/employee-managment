@@ -1,0 +1,45 @@
+.form-field {
+  position: relative;
+  margin: 20px 0;
+
+  &__input {
+    padding-left: 5px;
+    display: block;
+    height: 2rem;
+    width: 100%;
+    font-size: .8rem;
+    border: none;
+    border-bottom: 2px solid $gray-500;
+    background-color: transparent;
+    border-radius: 5px 5px 0 0;
+    transition: .3s ease-in-out;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:-internal-autofill-selected {
+      box-shadow: inset 0px 0px 0 1.5rem $green-300;
+    }
+
+    &:focus,
+    &--active {
+      & + label {
+        top: -12px;
+        font-size: .6rem;
+      }
+    }
+
+    &-label {
+      pointer-events: none;
+      position: absolute;
+      top: 6px;
+      left: 0;
+      right: 0;
+      cursor: text;
+      color: $gray-500;
+      font-size: .8rem;
+      transition: .3s ease-in-out;
+    }
+  }
+}

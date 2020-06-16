@@ -1,0 +1,52 @@
+.input-file-wrapper {
+  display: flex;
+  padding-top: 18px;
+}
+
+.form-field__input-file {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+
+  &:focus {
+    & ~ .form-field__input-file-btn {
+      outline: none;
+      box-shadow: 0 0 0 2px $green-400;
+    }
+  }
+
+  &-label {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    cursor: text;
+    color: #444444;
+    font-size: .8rem;
+    transition: .3s ease-in-out;
+  }
+
+  &-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 6px;
+    margin-right: .5rem;
+    height: 30px;
+    width: 50px;
+    font-size: .8rem;
+    background: $green-300;
+    border-radius: 3px;
+    transition: .1s ease-in-out;
+  }
+  &-name {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 50px - .5rem);
+    font-size: .8rem;
+    border-bottom: 2px solid $gray-500;
+  }
+}

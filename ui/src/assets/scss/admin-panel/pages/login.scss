@@ -1,0 +1,29 @@
+.admin-login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #002726;
+
+  &-headline {
+    color: #a1fffc;
+  }
+
+  &-form {
+    background-color: #a1fffc;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 0px #000000;
+
+    &__btn {
+      display: block;
+      margin: 0 auto;
+      padding: 5px 10px;
+      color: #9ffafc;
+      border: 0;
+      border-radius: 4px;
+      background-color: #1f1f1f;
+    }
+  }
+}

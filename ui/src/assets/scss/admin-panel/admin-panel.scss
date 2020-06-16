@@ -1,0 +1,20 @@
+$green-100: #bff6ff;
+$green-200: #a9f2fd;
+$green-300: #95f1ff;
+$green-400: #62eaff;
+
+$gray-500: #1f1f1f;
+
+.admin-panel {
+  padding: 60px 10px 0;
+  width: 100%;
+  min-height: 100vh;
+  color: #000;
+  background-color: $green-100;
+}
+
+@import './layouts/navbar';
+
+@import './partials/form';
+
+@import './pages/login';

@@ -1,0 +1,11 @@
+.form-field__select {
+  width: 100%;
+  padding: 5px 0;
+  border: 0;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px $green-300;
+  }
+}
