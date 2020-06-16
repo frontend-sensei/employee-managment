@@ -23,23 +23,17 @@
       :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="validate"
+      @click="submit"
     >
       Register
-    </v-btn>
-
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="reset"
-    >
-      Reset Form
     </v-btn>
 
   </v-form>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     data: () => ({
       valid: true,
@@ -58,10 +52,23 @@
     }),
 
     methods: {
-      validate () {
-        this.$refs.form.validate()
+      submit() {
+        if (this.validate()) {
+          const data = {
+            login: this.login,
+            password: this.password
+          }
+          this.register(data)
+          this.reset()
+        }
       },
-      reset () {
+      ...mapActions([
+        'register'
+      ]),
+      validate() {
+        return this.$refs.form.validate()
+      },
+      reset() {
         this.$refs.form.reset()
       },
     },
