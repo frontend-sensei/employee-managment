@@ -12,9 +12,8 @@ const notFoundRequest = require('./middleware/404')
 
 
 /* Routes */
-// Admin routes
-const adminRegistrationRoutes = require('./routes/admin/auth/registration')
-const adminLoginRoutes = require('./routes/admin/auth/login')
+const registrationRoutes = require('./routes/auth/registration')
+const loginRoutes = require('./routes/auth/login')
 
 
 /* App Keys */
@@ -26,7 +25,6 @@ const app = express()
 
 /* For access to public files */
 app.use(express.static(path.join(__dirname, 'public')))
-app.use('/audios', express.static(path.join(__dirname, 'audios')))
 
 /* Parse incoming requests */
 app.use(bodyParser.urlencoded({ extended: false })) // x-www-urlencoded
@@ -38,8 +36,8 @@ app.use(helmet())
 app.use(cors())
 
 /* Use Routes */
-app.use('/api', adminRegistrationRoutes)
-app.use('/api', adminLoginRoutes)
+app.use('/api', registrationRoutes)
+app.use('/api', loginRoutes)
 
 
 // Error middleware after all routes
