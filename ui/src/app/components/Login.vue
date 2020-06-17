@@ -23,39 +23,29 @@
       :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="validate"
-    >
-      Login
-    </v-btn>
+      @click="onLogin"
+    >Login</v-btn>
 
   </v-form>
 </template>
 
 <script>
+  import auth from '@/app/mixins/auth'
+
   export default {
-    data: () => ({
-      valid: true,
-      login: '',
-      loginRules: [
-        v => !!v || 'Login is required',
-        v => (v && v.length <= 10) || 'Login must be less than 10 characters',
-        v => (v && v.length >= 3) || 'Login must be more than 3 characters',
-      ],
-      password: '',
-      passwordRules: [
-        v => !!v || 'Password is required',
-        v => (v && v.length <= 20) || 'Password must be less than 20 characters',
-        v => (v && v.length >= 6) || 'Password must be more than 6 characters',
-      ]
-    }),
+
+    mixins: [auth],
 
     methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-    },
+
+      async onLogin() {
+        if (!this.validate()) return false
+        
+        const { login, password } = this
+        this.reset()
+        await this.$store.dispatch('authLogin', { login, password })
+      }
+
+    }
   }
 </script>
