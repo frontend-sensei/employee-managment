@@ -16,7 +16,7 @@ exports.registerValidators = [
 
 exports.loginValidators = [  
   body('password')
-    .isLength({min: 3, max: 32})
+    .isLength({min: 3, max: 20})
     .withMessage('Password length must be at least 3 characters')
     .custom(async (value, {req}) => {
 
