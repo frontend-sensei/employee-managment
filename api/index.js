@@ -14,6 +14,7 @@ const notFoundRequest = require('./middleware/404')
 /* Routes */
 const registrationRoutes = require('./routes/auth/registration')
 const loginRoutes = require('./routes/auth/login')
+const employeeRoutes = require('./routes/employee/employee')
 
 
 /* App Keys */
@@ -38,6 +39,7 @@ app.use(cors())
 /* Use Routes */
 app.use('/api', registrationRoutes)
 app.use('/api', loginRoutes)
+app.use('/api/employee', employeeRoutes)
 
 
 // Error middleware after all routes
