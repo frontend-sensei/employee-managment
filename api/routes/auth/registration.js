@@ -3,9 +3,9 @@ const router = Router()
 const bcrypt = require('bcryptjs')
 const {validationResult} = require('express-validator')
 const {registerValidators} = require('./validators')
-const User = require('../../../models/user')
+const User = require('../../models/user')
 
-router.post('/admin-register', registerValidators, async (req, res) => {
+router.post('/register', registerValidators, async (req, res) => {
   try {
     const {login, password} = req.body
     
@@ -17,12 +17,12 @@ router.post('/admin-register', registerValidators, async (req, res) => {
     }
 
     const hashPassword = await bcrypt.hash(password, 10)
-    const admin = new User({
-      login, password: hashPassword, role: "admin"
+    const user = new User({
+      login, password: hashPassword
     })
-    await admin.save()
+    await user.save()
     res.json({
-      msg: "Created new Admin"
+      msg: "Created new User"
     })
 
   } catch (e) {

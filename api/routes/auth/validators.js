@@ -1,6 +1,6 @@
 const {body} = require('express-validator')
 const bcrypt = require('bcryptjs')
-const User = require('../../../models/user')
+const User = require('../../models/user')
 
 exports.registerValidators = [
   body('login')
@@ -16,7 +16,7 @@ exports.registerValidators = [
 
 exports.loginValidators = [  
   body('password')
-    .isLength({min: 3, max: 32})
+    .isLength({min: 3, max: 20})
     .withMessage('Password length must be at least 3 characters')
     .custom(async (value, {req}) => {
 

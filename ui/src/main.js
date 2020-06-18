@@ -11,6 +11,8 @@ import store from './store'
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
+Vue.axios.defaults.baseURL = 'http://localhost:3000/api'
+
 new Vue({
   router,
   vuetify,

@@ -1,23 +1,13 @@
 import Auth from './pages/Auth'
-import Main from './pages/Main'
-
-import AdminPanel from './TheAdminPanel'
-
-
+import Home from './pages/Home'
 
 // Middleware
 const ifNotAuthenticated = (to, from, next) => {
-  if (!localStorage.getItem('admin-token')) {
-    next()
-    return
-  }
+  if (!localStorage.getItem('token')) return next()
   next('/')
 }
 const ifAuthenticated = (to, from, next) => {
-  if (localStorage.getItem('admin-token')) {
-    next()
-    return
-  }
+  if (localStorage.getItem('token')) return next()
   next('/auth')
 }
 
@@ -30,22 +20,9 @@ const adminRoutes = [
   },
   {
     path: '/',
-    name: 'AdminPanel',
-    component: AdminPanel,
+    name: 'Home',
+    component: Home,
     beforeEnter: ifAuthenticated,
-    redirect: {name: 'admin-panel-home'},
-    children: [
-      {
-        path: 'home',
-        name: 'admin-panel-home',
-        component: Main
-      },
-      // {
-      //   path: 'genres',
-      //   name: 'admin-panel-genres',
-      //   component: AdminGenres
-      // }
-    ]
   }
 ]
 
