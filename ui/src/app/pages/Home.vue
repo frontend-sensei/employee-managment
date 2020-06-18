@@ -18,7 +18,6 @@ export default {
 
     if (token) {
       this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-      console.log('added token to axios', this.axios.defaults.headers)
     }
 
     this.axios.interceptors.response.use(undefined, (err) => {
@@ -26,7 +25,7 @@ export default {
         if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
           console.log('Unauthorized')
           localStorage.removeItem('token')
-          this.$router.push({name: 'AdminPanelLogin'})
+          this.$router.push({name: 'Auth'})
         } else { 
           console.log('Authorized')
         }
