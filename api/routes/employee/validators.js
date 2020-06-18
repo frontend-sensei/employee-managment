@@ -6,7 +6,7 @@ exports.employeeValidators = [
     .withMessage('FullName length must be string')
     .isLength({min: 3})
     .withMessage('FullName length must be at least 3 characters')
-    .matches(/^[A-Za-z\s]+$/).withMessage('FullName must be alphabetic.'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/).withMessage('FullName must be alphabetic.'),
 
   body('dateOfBirth')
     .isString()
@@ -16,7 +16,7 @@ exports.employeeValidators = [
   body('position')
     .isString()
     .withMessage('Position must be string')
-    .matches(/^[A-Za-z\s]+$/).withMessage('Position must be alphabetic.'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/).withMessage('Position must be alphabetic.'),
 
   body('salary')
     .isNumeric()

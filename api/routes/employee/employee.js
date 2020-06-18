@@ -33,7 +33,8 @@ router.post('/', employeeValidators, async (req, res) => {
     await employee.save()
 
     res.json({
-      msg: "New employee created"
+      msg: "New employee created",
+      employee
     })
   } catch(e) {
     console.log(e)
