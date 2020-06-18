@@ -26,6 +26,5 @@ export default {
       localStorage.removeItem('token')
       router.push('/auth')
     }
-
   }
 }
