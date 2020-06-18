@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="employees"
     :search="search"
     sort-by="calories"
     class="elevation-1"
@@ -17,7 +17,7 @@
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Search"
+          label="Поиск"
           single-line
           hide-details
         ></v-text-field>
@@ -104,12 +104,13 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
+      <span>Сотрудники не найдены</span>
     </template>
   </v-data-table>
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
   export default {
     data: () => ({
       search: '',
@@ -125,7 +126,6 @@
       salary: [
         v => /^[0-9]+$/.test(v) || 'Только цифры',
       ],
-
       dialog: false,
       headers: [
         {
@@ -139,7 +139,6 @@
         { text: 'Оклад', value: 'salary' },
         { text: 'Действия', value: 'actions', sortable: false },
       ],
-      desserts: [],
       editedIndex: -1,
       editedItem: {
         fullName: '',
@@ -156,105 +155,34 @@
     }),
 
     computed: {
-      formTitle () {
+      formTitle() {
         return this.editedIndex === -1 ? 'Создание сотрудника' : 'Редактирование сотрудника'
       },
+      ...mapGetters(['employees'])
     },
 
     watch: {
-      dialog (val) {
+      dialog(val) {
         val || this.close()
       },
     },
 
-    created () {
-      this.initialize()
+    created() {
+      this.fetchEmployees()
     },
 
     methods: {
-      initialize () {
-        this.desserts = [
-          {
-            fullName: 'Saijo Masataka',
-            position: 'Frontend',
-            salary: '1000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Фыв йцвфыв',
-            position: 'Frontend',
-            salary: '1000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'авпвап ваыа',
-            position: 'Backend',
-            salary: '1500',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Saijo Masataka',
-            position: 'Python',
-            salary: '2000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Фыв йцвфыв',
-            position: 'Frontend',
-            salary: '1000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'авпвап ваыа',
-            position: 'Backend',
-            salary: '1500',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Saijo Masataka',
-            position: 'Python',
-            salary: '2000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Фыв йцвфыв',
-            position: 'Frontend',
-            salary: '1000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'авпвап ваыа',
-            position: 'Backend',
-            salary: '1500',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Saijo Masataka',
-            position: 'Python',
-            salary: '2000',
-            dateOfBirth: '1900-01-19'
-          },
-          {
-            fullName: 'Saijo Masataka',
-            position: 'Python',
-            salary: '2000',
-            dateOfBirth: '1900-01-19'
-          },
-        ]
-      },
-
-      editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+      editItem(item) {
+        this.editedIndex = this.employees.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
-      deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+      deleteItem(item) {
+        confirm('Вы уверены что хотите удалить этого сотрудника?') && this.deleteEmployee(item)
       },
 
-      close () {
+      close() {
         this.dialog = false
         this.$nextTick(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
@@ -262,16 +190,16 @@
         })
       },
 
-      save () {
+      save() {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
-          console.log('Edited item')
+          this.updateEmployee(this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
-          console.log('Created item')
+          this.createEmployee(this.editedItem)
         }
         this.close()
       },
+
+      ...mapActions(['fetchEmployees', 'createEmployee', 'updateEmployee', 'deleteEmployee'])
     },
   }
 </script>
