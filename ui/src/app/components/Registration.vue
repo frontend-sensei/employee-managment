@@ -40,7 +40,7 @@
     methods: {
 
       submit() {
-        if (this.validate()) return false
+        if (!this.validate()) return false
         const data = {
           login: this.login,
           password: this.password

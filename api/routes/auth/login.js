@@ -22,8 +22,6 @@ router.post('/login', loginValidators, async (req, res) => {
     const token = jwt.sign(user, keys.JWT_SECRET, { 
       expiresIn: '1d'
     })
-
-    console.log('Authenticated')
     
     res.json({
       token 

@@ -6,11 +6,6 @@ import adminRoutes from './app/admin-routes'
 
 const routes = [
   ...adminRoutes
-  // {
-  //   path: '/dear',
-  //   name: 'dear',
-  //   component: () => import('../views/Dear.vue')
-  // }
 ]
 
 const router = new VueRouter({
