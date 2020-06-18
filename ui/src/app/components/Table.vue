@@ -2,6 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
+    :search="search"
     sort-by="calories"
     class="elevation-1"
   >
@@ -13,6 +14,13 @@
           inset
           vertical
         ></v-divider>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on, attrs }">
@@ -104,6 +112,7 @@
 <script>
   export default {
     data: () => ({
+      search: '',
       valid: true,
       fullName: [
         v => !!v || 'ФИО обязательное поле',
