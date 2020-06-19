@@ -1,7 +1,5 @@
 # employee-managment
 
-> employee-managment
-
 ## Setup
 
 ```bash
